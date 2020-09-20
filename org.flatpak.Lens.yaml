@@ -1,0 +1,30 @@
+app-id: org.flatpak.Lens
+# command: hello.sh
+command: run.sh
+finish-args:
+  - --share=ipc
+  - --socket=wayland
+  - --socket=x11
+  - --socket=pulseaudio
+  - --share=network
+  - --filesystem=host
+  - --filesystem=home
+  - --talk-name=org.kde.StatusNotifierWatcher
+modules:
+- build-commands:
+  - ./build.sh
+  buildsystem: simple
+  name: hello
+  sources:
+  - path: org.flatpak.Lens.desktop
+    type: file
+  - path: build.sh
+    type: file
+  - path: run.sh
+    type: file
+  - url:  https://github.com/lensapp/lens/releases/download/v3.6.3/Lens-3.6.3.AppImage
+    type: file
+    sha256: 391b41a95438fd9dd63ef41df0f08797f8ec7fc406baa02cbc65c7f0aa823d4f
+runtime: org.gnome.Platform
+runtime-version: '3.36'
+sdk: org.gnome.Sdk
